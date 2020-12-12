@@ -1,25 +1,25 @@
 {
-  "name": "node-botvac",
+  "name": "node-kobold-control",
   "version": "0.4.0",
-  "description": "Neato Botvac API",
+  "description": "Vorwerk Kobold API for VR300",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Pmant/node-botvac.git"
+    "url": "git+https://github.com/himbeles/node-kobold-control.git"
   },
   "keywords": [
-    "neato",
-    "botvac"
+    "kobold",
+    "vorwerk"
   ],
-  "author": "Pmant",
+  "author": "Luis R.",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Pmant/node-botvac/issues"
+    "url": "https://github.com/himbeles/node-kobold-control/issues"
   },
-  "homepage": "https://github.com/Pmant/node-botvac#readme",
+  "homepage": "https://github.com/Pmant/node-kobold-control#readme",
   "dependencies": {
     "axios": "^0.18.1"
   }
