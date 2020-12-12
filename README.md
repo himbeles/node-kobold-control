@@ -1,16 +1,19 @@
-# node-botvac
-A node module for Neato Botvac Connected.
-Based on tomrosenbacks [PHP Port](https://github.com/tomrosenback/botvac) and [kanggurus work](https://github.com/kangguru/botvac) on the undocumented Neato API.
+# node-kobold-control
+
+A node module for Vorwerk Kobold VR300.
+
+Based on nicoh88's [node-kobold](https://github.com/nicoh88/node-kobold), Pmant's [node-botvac](https://github.com/Pmant/node-botvac), thanks to tomrosenback's [PHP Port](https://github.com/tomrosenback/botvac), [kangguru's](https://github.com/kangguru/botvac) and [naofireblade's](https://github.com/naofireblade/node-botvac) work on the undocumented Neato / Vorwerk API.
+
 
 ## Installation
-```npm install node-botvac```
+```npm install node-kobold-control```
 
 <a name="example"></a>
 ## Usage Example
 ```Javascript
-var botvac = require('node-botvac');
+var kobold = require('node-kobold-control');
 
-var client = new botvac.Client();
+var client = new kobold.Client();
 //authorize
 client.authorize('email', 'password', false, function (error) {
     if (error) {
@@ -33,22 +36,97 @@ client.authorize('email', 'password', false, function (error) {
 });
 ```
 
+
+## Usage OAuth2 (for i.e. MyKobold app)
+```Javascript
+var kobold = require('node-kobold');
+
+var client = new kobold.Client();
+//authorize
+client.setToken(token);
+
+//get your robots
+client.getRobots(function (error, robots) {
+    if (error) {
+        console.log(error);
+        return;
+    }
+    if (robots.length) {
+        //do something        
+        robots[0].getState(function (error, result) {
+            console.log(result);
+        });
+    }
+});
+```
+
+## Getting a token
+
+You can get a token using the following two curl commands:
+
+```bash
+# This will trigger the email sending
+curl -X "POST" "https://mykobold.eu.auth0.com/passwordless/start" \
+     -H 'Content-Type: application/json' \
+     -d $'{
+  "send": "code",
+  "email": "ENTER_YOUR_EMAIL_HERE",
+  "client_id": "KY4YbVAvtgB7lp8vIbWQ7zLk3hssZlhR",
+  "connection": "email"
+}'
+```
+==== wait for the email to be received ====
+
+```bash
+# this will generate a token using the numbers you received via email
+# replace the value of otp 123456 with the value you received from the email
+curl -X "POST" "https://mykobold.eu.auth0.com/oauth/token" \
+     -H 'Content-Type: application/json' \
+     -d $'{
+  "prompt": "login",
+  "grant_type": "http://auth0.com/oauth/grant-type/passwordless/otp",
+  "scope": "openid email profile read:current_user",
+  "locale": "en",
+  "otp": "123456",
+  "source": "vorwerk_auth0",
+  "platform": "ios",
+  "audience": "https://mykobold.eu.auth0.com/userinfo",
+  "username": "ENTER_YOUR_EMAIL_HERE",
+  "client_id": "KY4YbVAvtgB7lp8vIbWQ7zLk3hssZlhR",
+  "realm": "email",
+  "country_code": "DE"
+}'
+```
+
+From the output, you want to copy the `id_token` value.
+
 <a name="client"></a>
 ## Client API
   * <a href="#authorize"><code>client.<b>authorize()</b></code></a>
+  * <a href="#setToken"><code>client.<b>setToken()</b></code></a>
   * <a href="#getRobots"><code>client.<b>getRobots()</b></code></a>
  
 -------------------------------------------------------
 <a name="authorize"></a>
 ### client.authorize(email, password, force, callback)
 
-Login at the neato api. 
+Login at the Vorwerk api. 
 
-* `email` - your neato email
-* `password` - your neato passwort
+* `email` - your Vorwerk email
+* `password` - your Vorwerk passwort
 * `force` - force login if already authorized
 * `callback` - `function(error)`
   * `error` null if no error occurred
+
+-------------------------------------------------------
+<a name="setToken"></a>
+### client.setToken(token)
+
+Set a token that you already gathered via the oauth workflow
+
+* `token` - the OAuth token you acquired
+
+
 
 -------------------------------------------------------
 <a name="getRobots"></a>
