@@ -6,6 +6,9 @@ Based on nicoh88's [node-kobold](https://github.com/nicoh88/node-kobold), Pmant'
 
 
 ## Installation
+
+The package is available on [`npm`](https://www.npmjs.com/package/node-kobold-control)
+
 ```npm install node-kobold-control```
 
 <a name="example"></a>
