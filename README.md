@@ -39,7 +39,7 @@ client.authorize('email', 'password', false, function (error) {
 
 ## Usage OAuth2 (for i.e. MyKobold app)
 ```Javascript
-var kobold = require('node-kobold');
+var kobold = require('node-kobold-control');
 
 var client = new kobold.Client();
 //authorize
