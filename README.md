@@ -9,16 +9,18 @@ Based on nicoh88's [node-kobold](https://github.com/nicoh88/node-kobold), Pmant'
 
 The package is available on [`npm`](https://www.npmjs.com/package/node-kobold-control)
 
-```npm install node-kobold-control```
+```bash
+npm install -g node-kobold-control
+```
 
-<a name="example"></a>
 ## Usage Example
-```Javascript
+
+```js
 var kobold = require('node-kobold-control');
 
 var client = new kobold.Client();
-//authorize
-client.authorize('email', 'password', false, function (error) {
+
+client.authorize('***token***', function (error) {
     if (error) {
         console.log(error);
         return;
@@ -39,29 +41,6 @@ client.authorize('email', 'password', false, function (error) {
 });
 ```
 
-
-## Usage OAuth2 (for i.e. MyKobold app)
-```Javascript
-var kobold = require('node-kobold-control');
-
-var client = new kobold.Client();
-//authorize
-client.setToken(token);
-
-//get your robots
-client.getRobots(function (error, robots) {
-    if (error) {
-        console.log(error);
-        return;
-    }
-    if (robots.length) {
-        //do something        
-        robots[0].getState(function (error, result) {
-            console.log(result);
-        });
-    }
-});
-```
 
 ## Getting a token
 
