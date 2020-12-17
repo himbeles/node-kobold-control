@@ -19,7 +19,7 @@
   "bugs": {
     "url": "https://github.com/himbeles/node-kobold-control/issues"
   },
-  "homepage": "https://github.com/Pmant/node-kobold-control#readme",
+  "homepage": "https://github.com/himbeles/node-kobold-control#readme",
   "dependencies": {
     "axios": "^0.18.1"
   }
