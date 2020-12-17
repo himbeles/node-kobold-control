@@ -357,15 +357,3 @@ Locate the robot by emitting a sound and light
   * `error` null if no error occurred
   * `result` string - 'ok' if robot could be located
   
-## Changelog
-### 0.4.0
-* (naofireblade) add findMe
-### 0.3.0
-* (az0uz) add persistent maps and boundaries
-### 0.2.0
-* (koush) http transport changes and updates
-### 0.1.5
-* (naofireblade) add support for new parameter navigationMode (newer models)
-### 0.1.6
-* (naofireblade) add support for new parameter noGoLines (newer models)
-* (naofireblade) changed to keep cleaning parameters in sync with neato app
