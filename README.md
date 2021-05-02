@@ -1,3 +1,5 @@
+[![Latest NPM release](https://img.shields.io/npm/v/node-kobold-control.svg)](https://www.npmjs.com/package/node-kobold-control)
+
 # node-kobold-control
 
 A node module for Vorwerk Kobold VR300.
