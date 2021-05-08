@@ -128,6 +128,7 @@ Returns an array containing your registered <a href="#robot">robots</a>.
 * ```robot.name``` - nickname of this robot (cannot be changed)
 
 These properties will be updated every time <a href="#getState"><code>robot.<b>getState()</b></code></a> is called:
+* ```robot.isBinFull``` boolean
 * ```robot.isCharging``` boolean
 * ```robot.isDocked``` boolean
 * ```robot.isScheduleEnabled``` boolean
@@ -209,13 +210,52 @@ var state = {
 
 -------------------------------------------------------
 <a name="getSchedule"></a>
-### robot.getSchedule([callback])
+### robot.getSchedule([detailed], [callback])
 
 Returns the scheduling state of the robot.
-
+* `detailed` - `boolean` boolean, to return the full schedule object, not only it status
 * `callback` - `function(error, schedule)`
-  * `error` null if no error occurred
-  * `schedule` boolean - true if scheduling is enabled
+  * `error` ```null``` if no error occurred
+  * `schedule` depend on `detailed`
+    * ```boolean``` (when `detailed` is `undefined` or `false`) true if scheduling is enabled 
+    * ```object``` (when `detailed` is `true`) full schedule description object
+        * example:
+ ```Javascript
+var schedule = {
+    type:1,
+    enabled:true,
+    events:[
+        {
+            day:1,
+            startTime:"08:30"
+        },
+        {
+            day:2,
+            startTime:"08:30"
+        },
+        {
+            day:3,
+            startTime:"08:30"
+        },
+        {
+            day:4,
+            startTime:"08:30"
+        },
+        {
+            day:5,
+            startTime:"08:30"
+        },
+        {
+            day:6,
+            startTime:"11:30"
+        },
+        {
+            day:0,
+            startTime:"11:30"
+        }
+    ]
+}
+```
 
 -------------------------------------------------------
 <a name="enableSchedule"></a>
@@ -358,4 +398,12 @@ Locate the robot by emitting a sound and light
 * `callback` - `function(error, result)`
   * `error` null if no error occurred
   * `result` string - 'ok' if robot could be located
-  
+
+
+## Changelog
+
+### 0.5.0
+Changes adapted from [node-botvac](https://github.com/Pmant/node-botvac):
+* (PeterVoronov) add optional detailed parameter to robot.getSchedule
+* (naofireblade) add isBinFull property 
+* (naofireblade) prevent request from catching exceptions in callback
