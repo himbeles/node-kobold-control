@@ -1,6 +1,6 @@
 {
   "name": "node-kobold-control",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "description": "Vorwerk Kobold API for VR300",
   "main": "index.js",
   "scripts": {
